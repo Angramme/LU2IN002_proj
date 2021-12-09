@@ -1,11 +1,11 @@
 !{
     Porc
-    calories: 42
+    calories: 42 kcal
 }
 
 !{
     Salade
-    calories: -69
+    calories: 69 kcal
 }
 
 !{
@@ -13,3 +13,4 @@
     - Porc 42 mg
     - Salade 56 mg 
 }
+

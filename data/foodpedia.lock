@@ -1,13 +1,13 @@
 !{
 	Porc
-	calories: 42.0
+	calories: 42.0 kcal
 }
 !{
 	Grec
-	- Porc
-	- Salade
+	- Porc 0.042 g 
+	- Salade 0.056 g 
 }
 !{
 	Salade
-	calories: -69.0
+	calories: 69.0 kcal
 }

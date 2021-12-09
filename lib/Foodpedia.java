@@ -10,7 +10,21 @@ import java.io.FileNotFoundException;
 public class Foodpedia {
     HashMap<String, Food> foods;
 
-    public Foodpedia(File file) throws FileNotFoundException {
+    static public Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
+        File text = new File(path + "/foodpedia.txt");
+        File lock = new File(path + "/foodpedia.lock");
+
+        try{
+            Foodpedia fp = new Foodpedia(text);
+            fp.serialize(lock);
+            return fp;
+        }catch(Exception ex){
+            System.out.println("couldn't open foodpedia.txt, using .lock fallback ! : " + ex);
+            return new Foodpedia(lock);
+        }
+    }
+
+    public Foodpedia(File file) throws FileNotFoundException, Exception {
         Scanner scan = new Scanner(file);
 
         foods = new HashMap<String, Food>();
@@ -26,17 +40,27 @@ public class Foodpedia {
         resolveDependencies();
     }
 
-    Food FindBestMatch(String name){
+    public Food FindExactMatch(String name){
         return foods.get(name);
     }
     // finds more or less matching results
-    Food[] FindAll(String name){
-        return new Food[]{FindBestMatch(name)};
+    public Food[] FindAll(String name){
+        return new Food[]{FindExactMatch(name)};
     } 
 
-    public void resolveDependencies(){
-        for(Food x : foods.values()){
-            x.resolveComponents(this::FindBestMatch);
+    public void resolveDependencies() throws Exception {
+        boolean hasResolvedAll = false;
+        int it = 0;
+        while(!hasResolvedAll){
+            hasResolvedAll = true;
+            for(Food x : foods.values()){
+                x.resolveComponents(this::FindExactMatch);
+                hasResolvedAll = hasResolvedAll && x.isResolved();
+            }
+            it++;
+            if(it > 100){
+                throw new Exception("cannot resolve all dependencies!!! probably a circular dependency.");
+            }
         }
     }
 

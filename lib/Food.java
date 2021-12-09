@@ -11,7 +11,9 @@ interface NameToFood{
 public class Food extends UFood {
     private ArrayList<UFood> components;
     private ArrayList<Double> quantities;
+    // in kcal per 100g
     private double calories;
+    private int unresolved;
 
     public Food(String name, double calories){
         super(name);
@@ -28,7 +30,7 @@ public class Food extends UFood {
         if(scan.hasNext("\\s*calories:\\s*")){
             scan.skip("\\s*calories:\\s*");
             calories = scan.nextDouble();
-            scan.skip("\\s*\\n");
+            scan.skip("\\s*kcal\\s*\\n");
         }else{
             while(scan.hasNext("\\s*-")){
                 scan.skip("\\s*-\\s*");
@@ -49,21 +51,30 @@ public class Food extends UFood {
         scan.skip("\\s*}\\s*");
     }
 
+    public boolean isResolved(){
+        return unresolved == 0;
+    }
     public void resolveComponents(NameToFood getFood){
-        for(UFood f : components){
+        for(int i=0; i<components.size(); i++){
+            UFood f = components.get(i);
             if(!(f instanceof Food)){
                 f = getFood.run(f.getName());
+                if(((Food)f).isResolved()){
+                    calories += ((Food)f).getCalories() * quantities.get(i) / 100;
+                    unresolved--;
+                }
             }
         }
     }
     public void addComponent(Food food, double quantity){
         components.add(food);
         quantities.add(quantity);
-        calories += food.getCalories();
+        calories += food.getCalories() * quantity / 100;
     }
     public void addComponent(UFood food, double quantity){
         components.add(food);
         quantities.add(quantity);
+        unresolved++;
     }
 
     public String serialize(){
@@ -72,10 +83,10 @@ public class Food extends UFood {
         sb.append("!{\n");
         sb.append("\t"+getName()+"\n");
         if(components.size() == 0){
-            sb.append("\tcalories: "+ Double.toString(calories) + "\n");
+            sb.append("\tcalories: "+ Double.toString(calories) + " kcal\n");
         }else{
-            for(UFood f : components){
-                sb.append("\t- " + f.getName()+"\n");
+            for(int i=0; i<components.size(); i++){
+                sb.append("\t- " + components.get(i).getName()+" "+quantities.get(i)+" g \n");
             }
         }
         sb.append("}\n");
@@ -86,7 +97,8 @@ public class Food extends UFood {
         return "(food "+getName()+")";
     }
     
-    double getCalories(){
+    public Double getCalories(){
+        if(!isResolved()) return null;
         return calories;
     }
 }
