@@ -18,8 +18,6 @@
     - void serialize(String filepath) // serializes to file
     - boolean checkFoodDependencies() // checks if all referenced foods exist
 
-- interface PropertyAccessor { double run(Food str); }
-
 - EatHistory
     - addDataPoint(Food[] eaten)
     - addDataPoint(Food[] eaten, Date date)

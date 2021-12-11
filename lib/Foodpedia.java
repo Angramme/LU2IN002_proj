@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 public class Foodpedia {
-    HashMap<String, Food> foods;
+    HashMap<String, SimpleFood> foods;
 
     static public Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
         File text = new File(path + "/foodpedia.txt");
@@ -27,11 +27,11 @@ public class Foodpedia {
     public Foodpedia(File file) throws FileNotFoundException, Exception {
         Scanner scan = new Scanner(file);
 
-        foods = new HashMap<String, Food>();
+        foods = new HashMap<String, SimpleFood>();
 
         while(scan.hasNextLine()){
-            Food food = new Food(scan);
-            foods.put(food.getName(), food);
+            SimpleFood food = Food.parse(scan);
+            addFood(food);
             scan.skip("\\s*\\n*\\s*");
         }
 
@@ -40,12 +40,16 @@ public class Foodpedia {
         resolveDependencies();
     }
 
-    public Food FindExactMatch(String name){
+    public void addFood(SimpleFood food){
+        foods.put(food.getName(), food);
+    }
+
+    public SimpleFood FindExactMatch(String name){
         return foods.get(name);
     }
     // finds more or less matching results
-    public Food[] FindAll(String name){
-        return new Food[]{FindExactMatch(name)};
+    public SimpleFood[] FindAll(String name){
+        return new SimpleFood[]{FindExactMatch(name)};
     } 
 
     public void resolveDependencies() throws Exception {
@@ -53,9 +57,9 @@ public class Foodpedia {
         int it = 0;
         while(!hasResolvedAll){
             hasResolvedAll = true;
-            for(Food x : foods.values()){
-                x.resolveComponents(this::FindExactMatch);
-                hasResolvedAll = hasResolvedAll && x.isResolved();
+            for(SimpleFood x : foods.values()){
+                resolveFood(x); 
+                hasResolvedAll = hasResolvedAll && isResolved(x);
             }
             it++;
             if(it > 100){
@@ -64,11 +68,19 @@ public class Foodpedia {
         }
     }
 
+    private boolean isResolved(SimpleFood food){
+        return !(food instanceof Food) || ((Food)food).isResolved();
+    }
+    public void resolveFood(SimpleFood food){
+        if(food instanceof Food)
+            ((Food)food).resolveComponents(this::FindExactMatch);
+    }
+
     public String toString(){
         StringBuilder sb = new StringBuilder();
 
         sb.append("Foodpedia [\n");
-        for(Food f : foods.values()){
+        for(SimpleFood f : foods.values()){
             sb.append("  "+ f.toString() + "\n");
         }
         sb.append("]\n");
@@ -79,14 +91,10 @@ public class Foodpedia {
     public void serialize(File file) throws IOException {
         FileWriter wrtr = new FileWriter(file);
 
-        for(Food f : foods.values()){
+        for(SimpleFood f : foods.values()){
             wrtr.write(f.serialize());
         }
 
         wrtr.close();
     }
-
-    // - addFood(Food food)
-    // - String serialize() // serializes to string
-    // - void serialize(String filepath) // serializes to file
 }

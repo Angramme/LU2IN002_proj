@@ -10,7 +10,7 @@
 
 !{
     Grec
-    - Porc 42 mg
+    - Porc 42 kg
     - Salade 56 mg 
 }
 

@@ -3,10 +3,10 @@
 clean:
 	rm */*.class
 
-lib/UFood.class: lib/UFood.java
-	javac lib/UFood.java
+lib/BaseFood.class: lib/BaseFood.java
+	javac lib/BaseFood.java
 
-lib/Food.class: lib/Food.java lib/UFood.class
+lib/Food.class: lib/Food.java lib/BaseFood.class
 	javac lib/Food.java
 
 lib/Foodpedia.class: lib/Foodpedia.java lib/Food.class

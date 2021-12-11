@@ -9,13 +9,14 @@ public class Calories {
         try{
             Foodpedia fp = Foodpedia.openAndSync("./data/");
             
-            for(String a : args){
+            for(int i=0; i<args.length; i++){
+                String a = args[i];
                 Food food = fp.FindExactMatch(a);
                 if(food == null){
                     System.out.println("hmmm, seems like "+a+" doesn't exist in the database. SKIPPING...");
                 }else{
-                    System.out.println(">>>"+food.getName());
-                    System.out.println("> calories = "+food.getCalories() + " kcal / 100g");
+                    System.out.println("LE "+food.getName());
+                    System.out.println("--- calories : "+food.getCalories() + " kcal / 100g");
                 }
             }
 
