@@ -19,6 +19,9 @@ public class EatHistory {
     private File path;
 
     public EatHistory(File path){
+        if(!path.exists()){
+            path.mkdirs();
+        }
         this.path = path;
         chunks = new LinkedList<EatHistoryChunk>();
 
