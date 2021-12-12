@@ -39,10 +39,12 @@ public class GraphShow{
 
     public void drawGraph(ArrayList<DataPoint> points){
         StringBuilder sb = new StringBuilder();
+
+        sb.append(ANSI_RED + "veuillez mettre votre terminal en plein écran pour bénéficier du meilleur affichage possible.\n");
         
         sb.append(ANSI_YELLOW + "╔");
         for(int i=0 ; i<120 ; i++) sb.append("═"); sb.append("╗\n║");
-        sb.append(ANSI_CYAN + " key" + ANSI_YELLOW + " ║ " + ANSI_GREEN + "value (1 * = 1 kcal, 1 line = 100 kcal)" + ANSI_YELLOW);
+        sb.append(ANSI_CYAN + "     key     " + ANSI_YELLOW + " ║ " + ANSI_GREEN + "value (1 * = 1 kcal, 1 line = 100 kcal)" + ANSI_YELLOW);
         for(int i=0 ; i<74 ; i++) sb.append(" ");
         sb.append("║\n");
         sb.append("║");
@@ -62,6 +64,8 @@ public class GraphShow{
                     j = 0;
                 }
             }
+            for(int k=0 ; k<104-j ; k++) sb.append(" ");
+            sb.append(ANSI_YELLOW+"║");
             sb.append("\n"+ANSI_YELLOW+"║");
             for(int i=0 ; i<120 ; i++) sb.append("═");
             sb.append("║\n");
@@ -77,9 +81,11 @@ public class GraphShow{
                 j = 0;
             }
         }
+        for(int k=0 ; k<104-j ; k++) sb.append(" ");
+        sb.append(ANSI_YELLOW+"║");
         sb.append("\n"+ANSI_YELLOW+"╚");
         for(int i=0 ; i<120 ; i++) sb.append("═");
-        sb.append("\n");
+        sb.append(ANSI_YELLOW+"╝");
 
         System.out.println(sb.toString());
     }
