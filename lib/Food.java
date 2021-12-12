@@ -31,7 +31,7 @@ public class Food extends SimpleFood {
             scan.skip("\\s*!\\{\\s*\\n+\\s*");
             name = scan.next("[a-zA-Z\u00C0-\u017F]+");
             scan.skip("\\s*\\n+");
-            double portion = 100;
+            Double portion = null;
             if(scan.hasNext("\\s*portion")){
                 scan.skip("\\s*portion:\\s*");
                 portion = scanWUnit(scan);
@@ -42,10 +42,10 @@ public class Food extends SimpleFood {
                 double calories = scan.nextDouble();
                 scan.skip("\\s*kcal\\s*\\n+");
                 scan.skip("\\s*}\\s*");
-                return new SimpleFood(name, calories, portion);
+                return new SimpleFood(name, calories, portion==null ? 100 : portion);
             }else{
                 Food ret = new Food(name);
-                ret.portion = portion;
+                ret.portion = 0;
     
                 while(scan.hasNext("\\s*-")){
                     scan.skip("\\s*-\\s*");
@@ -53,10 +53,14 @@ public class Food extends SimpleFood {
                     scan.skip("\\s*");
                     double quantity = scanWUnit(scan);
                     scan.skip("\\s*\\n+");
+
+                    if(portion == null) ret.portion += quantity;
     
                     ret.addComponent(new UnresolvedFood(foodname), quantity);
                 }
                 scan.skip("\\s*}\\s*");
+
+                ret.portion = portion==null ? ret.portion : portion;
                 return ret;
             }
         }catch(InputMismatchException ex){
@@ -114,6 +118,7 @@ public class Food extends SimpleFood {
 
         sb.append("!{\n");
         sb.append("\t"+getName()+"\n");
+        sb.append("\tportion: "+Double.toString(getPortion())+" g\n");
         if(components.size() == 0){
             sb.append("\tcalories: "+ Double.toString(calories) + " kcal\n");
         }else{

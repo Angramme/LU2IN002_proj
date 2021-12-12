@@ -18,6 +18,7 @@ public class SimpleFood extends BaseFood {
 
         sb.append("!{\n");
         sb.append("\t"+getName()+"\n");
+        sb.append("\tportion: "+Double.toString(getPortion())+" g\n");
         sb.append("\tcalories: "+ Double.toString(calories) + " kcal\n");
         sb.append("}\n");
         
@@ -27,10 +28,10 @@ public class SimpleFood extends BaseFood {
     public Double getCalories(){
         return calories;
     }
+    public Double getPortion(){
+        return portion;
+    }
     public Double getCaloriesPortion(){
         return calories * portion / 100;
-    }
-    static public Double toCaloriesPortion(Food food){
-        return food.getCaloriesPortion();
     }
 }
