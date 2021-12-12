@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 
 import lib.Foodpedia;
-import lib.Food;
+import lib.SimpleFood;
 
 public class Calories {
     public static void main(String[] args) throws Exception {
@@ -11,7 +11,7 @@ public class Calories {
             
             for(int i=0; i<args.length; i++){
                 String a = args[i];
-                Food food = fp.FindExactMatch(a);
+                SimpleFood food = fp.FindExactMatch(a);
                 if(food == null){
                     System.out.println("hmmm, seems like "+a+" doesn't exist in the database. SKIPPING...");
                 }else{
