@@ -45,7 +45,7 @@ public class GraphShow{
         sb.append(ANSI_YELLOW + "╔");
         for(int i=0 ; i<120 ; i++) sb.append("═"); sb.append("╗\n║");
         sb.append(ANSI_CYAN + "     key     " + ANSI_YELLOW + " ║ " + ANSI_GREEN + "value (1 * = 1 kcal, 1 line = 100 kcal)" + ANSI_YELLOW);
-        for(int i=0 ; i<74 ; i++) sb.append(" ");
+        for(int i=0 ; i<65 ; i++) sb.append(" ");
         sb.append("║\n");
         sb.append("║");
         for(int i=0 ; i<120 ; i++) sb.append("═");
