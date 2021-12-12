@@ -16,6 +16,10 @@ public class EatHistoryChunk {
         SimpleFood food;
     }
 
+    interface DataPointEach{
+        public void run(DataPoint point);
+    }
+
     public static final int CHUNK_SIZE = 5; // in number of repas
 
     private HashMap<Long, SimpleFood> datapoints;
@@ -121,5 +125,24 @@ public class EatHistoryChunk {
 
         modified_since_open = true;
         return true;
+    }
+
+    public void eachDataPoint(DataPointEach func){
+        for(HashMap.Entry<Long, SimpleFood> entry : datapoints.entrySet()){
+            DataPoint dt = new DataPoint();
+            dt.timestamp = entry.getKey();
+            dt.food = entry.getValue();
+            func.run(dt);
+        }
+    }
+    public void eachDataPoint(long start, long end, DataPointEach func){
+        for(HashMap.Entry<Long, SimpleFood> entry : datapoints.entrySet()){
+            if(entry.getKey() >= start && entry.getKey() <= end){
+                DataPoint dt = new DataPoint();
+                dt.timestamp = entry.getKey();
+                dt.food = entry.getValue();
+                func.run(dt);
+            }
+        }
     }
 }
