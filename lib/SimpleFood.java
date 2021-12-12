@@ -2,13 +2,15 @@ package lib;
 
 public class SimpleFood extends BaseFood {
     protected double calories;
+    protected double portion;
 
     protected SimpleFood(){
         this.calories = 0;
     }
-    public SimpleFood(String name, double calories){
+    public SimpleFood(String name, double calories, double portion){
         super(name);
         this.calories = calories;
+        this.portion = portion;
     }
 
     public String serialize(){
@@ -25,7 +27,10 @@ public class SimpleFood extends BaseFood {
     public Double getCalories(){
         return calories;
     }
-    static public Double toCalories(Food food){
-        return food.getCalories();
+    public Double getCaloriesPortion(){
+        return calories * portion / 100;
+    }
+    static public Double toCaloriesPortion(Food food){
+        return food.getCaloriesPortion();
     }
 }

@@ -39,6 +39,16 @@
 }
 
 !{
+    Tomate
+    calories: 21 kcal
+}
+
+!{
+    Oignon
+    calories: 43 kcal
+}
+
+!{
     Avocat
     calories: 160 kcal
 }
@@ -99,13 +109,13 @@
     - Dinde 50 g
     - Salade 3 g
     - Tomate 5 g
-    - Oignons 4 g
+    - Oignon 4 g
 }
 
 !{
     Crepe
-    - Farine 30g
-    - Lait 50g
-    - Beurre 550mg
-    - Oeuf 250mg
+    - Farine 30 g
+    - Lait 50 g
+    - Beurre 550 mg
+    - Oeuf 250 mg
 }

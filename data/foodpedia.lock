@@ -1,13 +1,99 @@
 !{
-	Porc
-	calories: 42.0 kcal
+	Avocat
+	calories: 160.0 kcal
 }
 !{
-	Grec
-	- Porc 42000.0 g 
-	- Salade 0.056 g 
+	Fraise
+	calories: 32.0 kcal
+}
+!{
+	Oeuf
+	calories: 161.0 kcal
+}
+!{
+	Banane
+	calories: 89.0 kcal
+}
+!{
+	Pêche
+	calories: 39.0 kcal
+}
+!{
+	Lait
+	calories: 60.0 kcal
+}
+!{
+	Dinde
+	calories: 200.0 kcal
+}
+!{
+	Tomate
+	calories: 21.0 kcal
+}
+!{
+	Oignon
+	calories: 43.0 kcal
+}
+!{
+	Carotte
+	calories: 41.0 kcal
+}
+!{
+	Veau
+	calories: 280.0 kcal
+}
+!{
+	Raisin
+	calories: 69.0 kcal
+}
+!{
+	Bacon
+	calories: 407.0 kcal
+}
+!{
+	Crepe
+	- Farine 30.0 g 
+	- Lait 50.0 g 
+	- Beurre 0.55 g 
+	- Oeuf 0.25 g 
 }
 !{
 	Salade
-	calories: 69.0 kcal
+	calories: 15.0 kcal
+}
+!{
+	Poulet
+	calories: 239.0 kcal
+}
+!{
+	Beurre
+	calories: 720.0 kcal
+}
+!{
+	Porc
+	calories: 242.0 kcal
+}
+!{
+	Farine
+	calories: 339.0 kcal
+}
+!{
+	Kebab
+	- Veau 300.0 g 
+	- Dinde 50.0 g 
+	- Salade 3.0 g 
+	- Tomate 5.0 g 
+	- Oignon 4.0 g 
+}
+!{
+	Sucre
+	calories: 400.0 kcal
+}
+!{
+	Pomme
+	calories: 52.0 kcal
+}
+!{
+	Boeuf
+	calories: 248.0 kcal
 }

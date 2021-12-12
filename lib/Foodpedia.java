@@ -20,6 +20,7 @@ public class Foodpedia {
             return fp;
         }catch(Exception ex){
             System.out.println("couldn't open foodpedia.txt, using .lock fallback ! : " + ex);
+            ex.printStackTrace();
             return new Foodpedia(lock);
         }
     }
@@ -38,6 +39,10 @@ public class Foodpedia {
         scan.close();
 
         resolveDependencies();
+    }
+
+    public SimpleFood repas(String[] args){
+        return FindExactMatch(args[0]);    
     }
 
     public void addFood(SimpleFood food){
@@ -71,9 +76,11 @@ public class Foodpedia {
     private boolean isResolved(SimpleFood food){
         return !(food instanceof Food) || ((Food)food).isResolved();
     }
-    public void resolveFood(SimpleFood food){
-        if(food instanceof Food)
-            ((Food)food).resolveComponents(this::FindExactMatch);
+    public void resolveFood(SimpleFood food) throws Exception {
+        if(food instanceof Food){
+            Food ffood = (Food)food;
+            ffood.resolveComponents(this::FindExactMatch);
+        }
     }
 
     public String toString(){
