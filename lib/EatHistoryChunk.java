@@ -11,12 +11,12 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class EatHistoryChunk {
-    class DataPoint{
-        long timestamp;
-        SimpleFood food;
+    public class DataPoint{
+        public long timestamp;
+        public SimpleFood food;
     }
 
-    interface DataPointEach{
+    public interface DataPointEach{
         public void run(DataPoint point);
     }
 

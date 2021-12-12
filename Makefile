@@ -30,6 +30,9 @@ Calories.class: Calories.java lib/Foodpedia.class
 IveEaten.class: IveEaten.java lib/Foodpedia.class lib/EatHistory.class
 	javac IveEaten.java
 
-EatStats.class: EatStats.java lib/Foodpedia.class 
+EatStats.class: EatStats.java lib/Foodpedia.class lib/GraphShow.class
 	javac EatStats.java
 
+lib/GraphShow.class: lib/GraphShow.java
+	javac -encoding UTF-8 lib/GraphShow.java
+	# javac -encoding ISO-8859-1 lib/GraphShow.java

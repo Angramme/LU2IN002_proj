@@ -15,7 +15,7 @@ public class IveEaten{
 
             SimpleFood repas = fp.repas(args);
             if(repas == null){
-                System.out.println(String.join(" ", args)+" n'existe pas dans la base des donnes!");
+                System.out.println(String.join(" ", args)+" n'existe pas dans la base des donnes! ");
                 return;
             }
 

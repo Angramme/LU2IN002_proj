@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class EatHistory {
-    interface ChunkEach{
+    public interface ChunkEach{
         public void run(EatHistoryChunk chunk);
     }
 

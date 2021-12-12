@@ -1,11 +1,19 @@
 package lib;
 
+import java.util.ArrayList;
 public class GraphShow{
-    public class DataPoint{
-        int key;
-        double value;
+    static public class DataPoint{
+        private long key;
+        private double value;
 
-        public DataPoint(int key, double value){
+        public long getKey(){
+            return key;
+        }
+        public double getValue(){
+            return value;
+        }
+
+        public DataPoint(long key, double value){
             this.key = key;
             this.value = value;
         }
@@ -21,7 +29,15 @@ public class GraphShow{
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public void drawGraph(DataPoint[] points){
+    public static final GraphShow instance = new GraphShow();
+
+    private GraphShow(){}
+
+    public static GraphShow get(){
+        return instance;
+    }
+
+    public void drawGraph(ArrayList<DataPoint> points){
         StringBuilder sb = new StringBuilder();
         
         sb.append(ANSI_YELLOW + "╔");
@@ -33,9 +49,9 @@ public class GraphShow{
         for(int i=0 ; i<120 ; i++) sb.append("═");
         sb.append(ANSI_YELLOW+"║");
         sb.append("\n");
-        for(int a=0 ; a<points.length-1 ; a++){
-            sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points[a].key)+ ANSI_RED + ": " + ANSI_RESET);
-            int nb = (int)points[a].value;
+        for(int a=0 ; a<points.size()-1 ; a++){
+            sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points.get(a).key)+ ANSI_RED + ": " + ANSI_RESET);
+            long nb = (long)points.get(a).value;
             int j=0;
             for(int i=0 ; i<nb ; i++){
                 sb.append(ANSI_GREEN + "*" + ANSI_RESET);
@@ -50,8 +66,8 @@ public class GraphShow{
             for(int i=0 ; i<120 ; i++) sb.append("═");
             sb.append("║\n");
         }
-        sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points[points.length - 1].key)+ ANSI_RED + ": " + ANSI_RESET);
-        int nb = (int)points[points.length - 1].value;
+        sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points.get(points.size() - 1).key)+ ANSI_RED + ": " + ANSI_RESET);
+        long nb = (int)points.get(points.size() - 1).value;
         int j=0;
         for(int i=0 ; i<nb ; i++){
             sb.append(ANSI_GREEN + "*" + ANSI_RESET);
