@@ -6,7 +6,7 @@ clean:
 lib/BaseFood.class: lib/BaseFood.java
 	javac lib/BaseFood.java
 
-lib/EatHistory.class: lib/EatHistory.java
+lib/EatHistory.class: lib/EatHistory.java lib/EatHistoryChunk.class
 	javac lib/EatHistory.java
 
 lib/EatHistoryChunk.class: lib/EatHistoryChunk.java
@@ -27,7 +27,7 @@ lib/UnresolvedFood.class: lib/UnresolvedFood.java lib/BaseFood.class
 Calories.class: Calories.java lib/Foodpedia.class 
 	javac Calories.java
 
-IveEaten.class: IveEaten.java lib/Foodpedia.class 
+IveEaten.class: IveEaten.java lib/Foodpedia.class lib/EatHistory.class
 	javac IveEaten.java
 
 EatStats.class: EatStats.java lib/Foodpedia.class 
