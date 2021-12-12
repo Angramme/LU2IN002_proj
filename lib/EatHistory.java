@@ -14,7 +14,7 @@ public class EatHistory {
         public void run(EatHistoryChunk chunk);
     }
 
-    public static final int CHUNK_BUFFER_COUNT = 5;
+    public static final int CHUNK_BUFFER_COUNT = 25;
     private LinkedList<EatHistoryChunk> chunks;
     private File path;
 

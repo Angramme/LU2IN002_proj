@@ -20,7 +20,7 @@ public class EatHistoryChunk {
         public void run(DataPoint point);
     }
 
-    public static final int CHUNK_SIZE = 5; // in number of repas
+    public static final int CHUNK_SIZE = 200; // in number of repas
 
     private HashMap<Long, SimpleFood> datapoints;
     private File sync_file;
