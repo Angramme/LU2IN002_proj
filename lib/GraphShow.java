@@ -57,8 +57,8 @@ public class GraphShow{
                 sb.append(ANSI_GREEN + "*" + ANSI_RESET);
                 j++;
                 if (j == 100){
-                    for(int k = 0 ; k<13 ; k++) sb.append(" ");
-                    sb.append(ANSI_YELLOW + "║\n" + ANSI_YELLOW + "║" + ANSI_GREEN + "       ");
+                    for(int k = 0 ; k<4 ; k++) sb.append(" ");
+                    sb.append(ANSI_YELLOW + "║\n" + ANSI_YELLOW + "║" + ANSI_GREEN + "                ");
                     j = 0;
                 }
             }
