@@ -1,57 +1,71 @@
 !{
 	Avocat
+	portion: 100.0 g
 	calories: 160.0 kcal
 }
 !{
 	Fraise
+	portion: 100.0 g
 	calories: 32.0 kcal
 }
 !{
 	Oeuf
+	portion: 100.0 g
 	calories: 161.0 kcal
 }
 !{
 	Banane
+	portion: 100.0 g
 	calories: 89.0 kcal
 }
 !{
 	Pêche
+	portion: 100.0 g
 	calories: 39.0 kcal
 }
 !{
 	Lait
+	portion: 100.0 g
 	calories: 60.0 kcal
 }
 !{
 	Dinde
+	portion: 100.0 g
 	calories: 200.0 kcal
 }
 !{
 	Tomate
+	portion: 100.0 g
 	calories: 21.0 kcal
 }
 !{
 	Oignon
+	portion: 100.0 g
 	calories: 43.0 kcal
 }
 !{
 	Carotte
+	portion: 100.0 g
 	calories: 41.0 kcal
 }
 !{
 	Veau
+	portion: 100.0 g
 	calories: 280.0 kcal
 }
 !{
 	Raisin
+	portion: 100.0 g
 	calories: 69.0 kcal
 }
 !{
 	Bacon
+	portion: 100.0 g
 	calories: 407.0 kcal
 }
 !{
 	Crepe
+	portion: 80.8 g
 	- Farine 30.0 g 
 	- Lait 50.0 g 
 	- Beurre 0.55 g 
@@ -59,26 +73,32 @@
 }
 !{
 	Salade
+	portion: 100.0 g
 	calories: 15.0 kcal
 }
 !{
 	Poulet
+	portion: 100.0 g
 	calories: 239.0 kcal
 }
 !{
 	Beurre
+	portion: 100.0 g
 	calories: 720.0 kcal
 }
 !{
 	Porc
+	portion: 100.0 g
 	calories: 242.0 kcal
 }
 !{
 	Farine
+	portion: 100.0 g
 	calories: 339.0 kcal
 }
 !{
 	Kebab
+	portion: 362.0 g
 	- Veau 300.0 g 
 	- Dinde 50.0 g 
 	- Salade 3.0 g 
@@ -87,13 +107,16 @@
 }
 !{
 	Sucre
+	portion: 100.0 g
 	calories: 400.0 kcal
 }
 !{
 	Pomme
+	portion: 100.0 g
 	calories: 52.0 kcal
 }
 !{
 	Boeuf
+	portion: 100.0 g
 	calories: 248.0 kcal
 }
