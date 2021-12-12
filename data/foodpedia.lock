@@ -19,6 +19,11 @@
 	calories: 89.0 kcal
 }
 !{
+	Pêche
+	portion: 100.0 g
+	calories: 39.0 kcal
+}
+!{
 	Lait
 	portion: 100.0 g
 	calories: 60.0 kcal
@@ -75,11 +80,6 @@
 	Poulet
 	portion: 100.0 g
 	calories: 239.0 kcal
-}
-!{
-	Pêche
-	portion: 100.0 g
-	calories: 39.0 kcal
 }
 !{
 	Beurre
