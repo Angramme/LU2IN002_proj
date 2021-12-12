@@ -35,4 +35,3 @@ EatStats.class: EatStats.java lib/Foodpedia.class lib/GraphShow.class
 
 lib/GraphShow.class: lib/GraphShow.java
 	javac -encoding UTF-8 lib/GraphShow.java
-	# javac -encoding ISO-8859-1 lib/GraphShow.java
