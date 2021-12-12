@@ -26,11 +26,6 @@ public class EatStats {
         };
         eh.eachDataPoint(start, end, F);
 
-        for(GraphShow.DataPoint dp : points){
-            System.out.println(dp.getKey());
-            System.out.println(dp.getValue());
-        }
-
         GraphShow.get().drawGraph(points);
     }
 }
