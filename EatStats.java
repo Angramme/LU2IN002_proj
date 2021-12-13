@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import lib.EatHistory;
@@ -24,8 +25,9 @@ public class EatStats {
             end = (new Date()).getTime();
             start = end - 14*24*60*60*1000;
         }else{
-            start = Long.parseLong(args[0]);
-            end = Long.parseLong(args[1]);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            start = dateFormat.parse(args[0]).getTime();
+            end = dateFormat.parse(args[1]).getTime() +24*60*60*1000;
         }
 
         EatHistory eh = new EatHistory(new File("./data/history_chunks"));
@@ -52,7 +54,10 @@ public class EatStats {
         }
 
 
-
-        GraphShow.get().drawGraph(points, tap);
+        if(points.size() != 0){
+            GraphShow.get().drawGraph(points, tap);
+        }else{
+            System.out.print(ANSI_RED + "Manque des données! \n"+ANSI_RESET);
+        }
     }
 }
