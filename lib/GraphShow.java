@@ -58,6 +58,7 @@ public class GraphShow{
         for(int i=0 ; i<135 ; i++) sb.append("═");
         sb.append(ANSI_YELLOW+"║");
         sb.append("\n");
+        double total=0;
         for(int a=0 ; a<points.size() ; a++){
             sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%s ", new Date(points.get(a).key))+ ANSI_RED + ": " + ANSI_RESET);
             long nb = (long)(points.get(a).value / max * 100);
@@ -66,6 +67,7 @@ public class GraphShow{
             }
             for(int k=0 ; k<104-nb ; k++) sb.append(" ");
             sb.append(ANSI_YELLOW + "║\n");
+            total += points.get(a).value;
         }
         // sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4s ", new Date(points.get(points.size() - 1).key))+ ANSI_RED + ": " + ANSI_RESET);
         // long nb = (long)(points.get(points.size() - 1).value / max * 100);
@@ -88,12 +90,13 @@ public class GraphShow{
         for(int pourc = 1 ; pourc <= 100 ; pourc++){
             if (pourc % 10 == 0){
                 value = (int)(max * ((double)pourc / 100));
-                System.out.println((int)(Math.log10(value)+1));
                 sb.delete(sb.length()-(int)(Math.log10(value)+2), sb.length()-1);
                 sb.append(String.format("%d", value));
             }
             sb.append(" ");
         }
+        sb.append("\n║");
+        sb.append("Total de calories consommés : "+String.format("%.2f", total)+" kcal");
         sb.append("\n"+ANSI_YELLOW+"╚");
         for(int i=0 ; i<135 ; i++) sb.append("═");
         sb.append(ANSI_YELLOW+"╝");
