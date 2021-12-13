@@ -2,9 +2,11 @@ package lib;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.lang.Comparable;
+import java.util.Comparator;
 
 public class GraphShow{
-    static public class DataPoint{
+    static public class DataPoint implements Comparable<DataPoint> {
         private long key;
         private double value;
 
@@ -15,9 +17,20 @@ public class GraphShow{
             return value;
         }
 
+        public int compareTo(DataPoint o){
+            if(key == o.key) return 0;
+            else return key > o.key ? 1 : -1;
+        }
+
         public DataPoint(long key, double value){
             this.key = key;
             this.value = value;
+        }
+    }
+    static public class DataPointComparator implements Comparator<GraphShow.DataPoint> {
+        @Override
+        public int compare(GraphShow.DataPoint o1, GraphShow.DataPoint o2) {
+            return o1.compareTo(o2);
         }
     }
     

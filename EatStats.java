@@ -36,6 +36,8 @@ public class EatStats {
         };
         eh.eachDataPoint(start, end, F);
 
+        points.sort(new GraphShow.DataPointComparator());
+
         System.out.println(ANSI_PURPLE + "Bienvenue sur le programme EatStats ! Ce programme va afficher sous forme de graphique les calories que vous avez consommé récemment.");
         
         System.out.print(ANSI_CYAN + "Etes-vous un homme ou une femme ? (tapez votre réponse) : "+ANSI_RESET);
