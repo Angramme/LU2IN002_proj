@@ -2,6 +2,10 @@
 
 
 ## Classes:
+- abstract BaseFood
+    - String name
+    - String getName()
+    - String toString
 - Food
     - String name
     - ArrayList< Food > components

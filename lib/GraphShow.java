@@ -2,8 +2,12 @@ package lib;
 
 import java.util.ArrayList;
 import java.util.Date;
+<<<<<<< Updated upstream
 import java.lang.Comparable;
 import java.util.Comparator;
+=======
+import java.util.Calendar;
+>>>>>>> Stashed changes
 
 public class GraphShow{
     static public class DataPoint implements Comparable<DataPoint> {
@@ -71,11 +75,18 @@ public class GraphShow{
         sb.append(ANSI_YELLOW+"║");
         sb.append("\n");
         double total=0;
-        Date ajd = new Date();
-        double consoajd = 0;
+        double consocurrent = 0;
+
+        Calendar c = Calendar.getInstance();
+
+        Calendar currentDay = Calendar.getInstance();
+        currentDay.setTime(new Date(points.get(0).key));
+
+        ArrayList<Double> tabCal = new ArrayList<Double>();
 
         for(int a=0 ; a<points.size() ; a++){
             Date date = new Date(points.get(a).key);
+            c.setTime(date);
             sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%s ", date) + ANSI_RED + ": " + ANSI_RESET);
             long nb = (long)(points.get(a).value / max * 100);
             for(int i=0 ; i<nb ; i++){
@@ -85,8 +96,17 @@ public class GraphShow{
             for(int k=0 ; k<104-nb-(int)(Math.log10(points.get(a).value)+1) ; k++) sb.append(" ");
             sb.append(ANSI_YELLOW + "║\n");
             total += points.get(a).value;
-            if(date.getDate() == ajd.getDate()){
-                consoajd += points.get(a).value;
+
+            //debug
+            System.out.println(c.get(Calendar.DAY_OF_MONTH));
+            System.out.println(currentDay.get(Calendar.DAY_OF_MONTH));
+
+            if(c.get(Calendar.DAY_OF_MONTH) == currentDay.get(Calendar.DAY_OF_MONTH)){
+                consocurrent += points.get(a).value;
+            }
+            else{
+                currentDay.setTime(date);
+                tabCal.add(consocurrent);
             }
         }
 
@@ -113,20 +133,38 @@ public class GraphShow{
 
         // recommendations
 
+        int reco;
 
         if (genre.equals("homme")){
             sb.append("Consommation moyenne recommandée de calories journalières pour un homme : " + ANSI_YELLOW + "2600 kcal\n");
+            reco = 2600;
         }
         else{
             sb.append("Consommation moyenne recommandée de calories journalières pour une femme : 2100 kcal\n");
+            reco = 2100;
         }
 
-        if(consoajd < 2600){
-            sb.append("Total de calories consommés aujourd'hui : "+ANSI_GREEN + String.format("%.2f", consoajd)+" kcal"+ANSI_RESET+", vous êtes dans la recommandation !");
+        // cas 0
+
+        if(tabCal.get(0) < 2600){
+            sb.append("Total de calories consommés le premier jour : "+ANSI_GREEN + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous êtes dans la recommandation !\n");
         }
         else{
-            sb.append("Total de calories consommés aujourd'hui : "+ANSI_RED + String.format("%.2f", consoajd)+" kcal"+ANSI_RESET+", vous avez trop consommé aujourd'hui");
+            sb.append("Total de calories consommés le premier jour : "+ANSI_RED + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous avez trop consommé aujourd'hui\n");
         }
+
+        // autres cas
+
+        for(int i=1 ; i<tabCal.size() ; i++){
+            if(tabCal.get(i) < reco){
+                sb.append("Total de calories consommés le " + (i+1) + "ème jour " + ": "+ANSI_GREEN + String.format("%.2f", tabCal.get(i))+" kcal"+ANSI_RESET+", vous êtes dans la recommandation !\n");
+            }
+            else{
+                sb.append("Total de calories consommés le " + (i+1) + "ème jour " + ": "+ANSI_RED + String.format("%.2f", tabCal.get(i))+" kcal"+ANSI_RESET+", vous avez trop consommé aujourd'hui\n");
+            }
+        }
+
+        
 
         System.out.println(sb.toString());
     }
