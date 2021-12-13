@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 import lib.EatHistory;
 import lib.EatHistoryChunk;
@@ -37,6 +38,19 @@ public class EatStats {
 
         System.out.println(ANSI_PURPLE + "Bienvenue sur le programme EatStats ! Ce programme va afficher sous forme de graphique les calories que vous avez consommé récemment.");
         
-        GraphShow.get().drawGraph(points);
+        System.out.print(ANSI_CYAN + "Etes-vous un homme ou une femme ? (tapez votre réponse) : "+ANSI_RESET);
+
+        Scanner genre = new Scanner(System.in);
+        String tap = genre.nextLine();
+
+        genre.close();
+
+        if(!(tap.equals("homme")) && !(tap.equals("femme"))){
+            throw new Exception("saisie incorrecte");
+        }
+
+
+
+        GraphShow.get().drawGraph(points, tap);
     }
 }

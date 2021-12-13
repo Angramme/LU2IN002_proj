@@ -104,6 +104,11 @@
 }
 
 !{
+    Potatoe
+    calories: 93 kcal
+}
+
+!{
     Kebab
     - Veau 300 g
     - Dinde 50 g

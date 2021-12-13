@@ -72,6 +72,11 @@
 	calories: 15.0 kcal
 }
 !{
+	Potatoe
+	portion: 100.0 g
+	calories: 93.0 kcal
+}
+!{
 	Poulet
 	portion: 100.0 g
 	calories: 239.0 kcal
