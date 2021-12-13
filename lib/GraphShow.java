@@ -1,6 +1,8 @@
 package lib;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 public class GraphShow{
     static public class DataPoint{
         private long key;
@@ -38,53 +40,62 @@ public class GraphShow{
     }
 
     public void drawGraph(ArrayList<DataPoint> points){
+        double max = points.get(0).value;
+        for(DataPoint dp : points){
+            if (dp.value > max) max = dp.value;
+        }
+
         StringBuilder sb = new StringBuilder();
 
-        sb.append(ANSI_RED + "veuillez mettre votre terminal en plein écran pour bénéficier du meilleur affichage possible.\n");
+        sb.append(ANSI_RED + "veuillez mettre votre terminal en plein écran pour bénéficier du meilleur affichage possible. Si vous avez des soucis d'affichage, relancez le programme avec le terminal en plein écran.\n");
         
         sb.append(ANSI_YELLOW + "╔");
-        for(int i=0 ; i<120 ; i++) sb.append("═"); sb.append("╗\n║");
-        sb.append(ANSI_CYAN + "     key     " + ANSI_YELLOW + " ║ " + ANSI_GREEN + "value (1 * = 1 kcal, 1 line = 100 kcal)" + ANSI_YELLOW);
-        for(int i=0 ; i<65 ; i++) sb.append(" ");
+        for(int i=0 ; i<135 ; i++) sb.append("═"); sb.append("╗\n║");
+        sb.append(ANSI_CYAN + "            Date             " + ANSI_YELLOW + "║ " + ANSI_GREEN + "     nombre de calories (* = 1% du repas où vous aviez été le plus gourmand) " + ANSI_YELLOW);
+        for(int i=0 ; i<27 ; i++) sb.append(" ");
         sb.append("║\n");
         sb.append("║");
-        for(int i=0 ; i<120 ; i++) sb.append("═");
+        for(int i=0 ; i<135 ; i++) sb.append("═");
         sb.append(ANSI_YELLOW+"║");
         sb.append("\n");
-        for(int a=0 ; a<points.size()-1 ; a++){
-            sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points.get(a).key)+ ANSI_RED + ": " + ANSI_RESET);
-            long nb = (long)points.get(a).value;
-            int j=0;
+        for(int a=0 ; a<points.size() ; a++){
+            sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%s ", new Date(points.get(a).key))+ ANSI_RED + ": " + ANSI_RESET);
+            long nb = (long)(points.get(a).value / max * 100);
             for(int i=0 ; i<nb ; i++){
                 sb.append(ANSI_GREEN + "*" + ANSI_RESET);
-                j++;
-                if (j == 100){
-                    for(int k = 0 ; k<4 ; k++) sb.append(" ");
-                    sb.append(ANSI_YELLOW + "║\n" + ANSI_YELLOW + "║" + ANSI_GREEN + "                ");
-                    j = 0;
-                }
             }
-            for(int k=0 ; k<104-j ; k++) sb.append(" ");
-            sb.append(ANSI_YELLOW+"║");
-            sb.append("\n"+ANSI_YELLOW+"║");
-            for(int i=0 ; i<120 ; i++) sb.append("═");
-            sb.append("║\n");
+            for(int k=0 ; k<104-nb ; k++) sb.append(" ");
+            sb.append(ANSI_YELLOW + "║\n");
         }
-        sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4d ", points.get(points.size() - 1).key)+ ANSI_RED + ": " + ANSI_RESET);
-        long nb = (int)points.get(points.size() - 1).value;
-        int j=0;
-        for(int i=0 ; i<nb ; i++){
-            sb.append(ANSI_GREEN + "*" + ANSI_RESET);
-            j++;
-            if (j == 100){
-                sb.append("\n" + ANSI_YELLOW + "║" + ANSI_GREEN + "       ");
-                j = 0;
-            }
-        }
-        for(int k=0 ; k<104-j ; k++) sb.append(" ");
+        // sb.append(ANSI_YELLOW + "║" + ANSI_CYAN + String.format("%4s ", new Date(points.get(points.size() - 1).key))+ ANSI_RED + ": " + ANSI_RESET);
+        // long nb = (long)(points.get(points.size() - 1).value / max * 100);
+        // int j=0;
+        // for(int i=0 ; i<nb ; i++){
+        //     sb.append(ANSI_GREEN + "*" + ANSI_RESET);
+        //     j++;
+        //     if (j == 100){
+        //         for(int k = 0 ; k<4 ; k++) sb.append(" ");
+        //         sb.append(ANSI_YELLOW + "║\n" + ANSI_YELLOW + "║" + ANSI_GREEN + "                ");
+        //         j = 0;
+        //     }
+        // }
+        // for(int k=0 ; k<104-j ; k++) sb.append(" ");
         sb.append(ANSI_YELLOW+"║");
+        // sb.append("\n║");
+        for(int k=0 ; k<30 ; k++) sb.append(" ");
+        sb.append("0");
+        int value;
+        for(int pourc = 1 ; pourc <= 100 ; pourc++){
+            if (pourc % 10 == 0){
+                value = (int)(max * ((double)pourc / 100));
+                System.out.println((int)(Math.log10(value)+1));
+                sb.delete(sb.length()-(int)(Math.log10(value)+2), sb.length()-1);
+                sb.append(String.format("%d", value));
+            }
+            sb.append(" ");
+        }
         sb.append("\n"+ANSI_YELLOW+"╚");
-        for(int i=0 ; i<120 ; i++) sb.append("═");
+        for(int i=0 ; i<135 ; i++) sb.append("═");
         sb.append(ANSI_YELLOW+"╝");
 
         System.out.println(sb.toString());
