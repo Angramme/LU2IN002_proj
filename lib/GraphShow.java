@@ -119,7 +119,7 @@ public class GraphShow{
         }
         sb.append("\n║");
         sb.append("Total de calories consommés : "+String.format("%.2f", total)+" kcal");
-        for(int k=0 ; k<97-(int)(Math.log10(max)+1) ; k++) sb.append(" ");
+        for(int k=0 ; k<97-((int)(Math.log10(total)+1)) ; k++) sb.append(" ");
         sb.append("║");
         sb.append("\n"+ANSI_YELLOW+"╚");
         for(int i=0 ; i<135 ; i++) sb.append("═");
@@ -131,11 +131,11 @@ public class GraphShow{
         int reco;
 
         if (genre.equals("homme")){
-            sb.append("Consommation moyenne recommandée de calories journalières pour un homme : " + ANSI_YELLOW + "2600 kcal\n");
+            sb.append("Consommation moyenne recommandée de calories journalières pour un homme : " + ANSI_YELLOW + "2600 kcal\n" + ANSI_RESET);
             reco = 2600;
         }
         else{
-            sb.append("Consommation moyenne recommandée de calories journalières pour une femme : 2100 kcal\n");
+            sb.append("Consommation moyenne recommandée de calories journalières pour une femme : " + ANSI_YELLOW + "2100 kcal\n" + ANSI_RESET);
             reco = 2100;
         }
 
@@ -159,7 +159,13 @@ public class GraphShow{
             }
         }
 
-        
+        sb.append("\n");
+
+        double moyennetot = total / tabCal.size();
+        if(moyennetot < reco) sb.append("Moyenne totale : "+ANSI_GREEN+String.format("%.2f", moyennetot) + "kcal / jour." + ANSI_RESET + " Votre consommation au niveau des calories est OK.");
+        else sb.append("Moyenne totale : "+ANSI_RED+String.format("%.2f", moyennetot) + "kcal / jour." + ANSI_RESET + " La moyenne journalière est supérieure à la consommation journalière recommandée, réduisez votre consommation.");
+
+        sb.append("\nMerci d'avoir utilisé EatStats !");
 
         System.out.println(sb.toString());
     }
