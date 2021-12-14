@@ -81,7 +81,7 @@ public class EatHistoryChunk {
             FileWriter wrtr = new FileWriter(sync_file, false); // open with truncate
 
             for(HashMap.Entry<Long, SimpleFood> entry : datapoints.entrySet()){
-                wrtr.write(String.format("%d %f %s\n", entry.getKey(), entry.getValue().getCalories(), entry.getValue().getName()));
+                wrtr.write(String.format("%d %f %s\n", entry.getKey(), entry.getValue().getCaloriesPortion(), entry.getValue().getName()));
             }
 
             wrtr.close();
