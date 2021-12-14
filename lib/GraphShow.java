@@ -2,12 +2,9 @@ package lib;
 
 import java.util.ArrayList;
 import java.util.Date;
-<<<<<<< Updated upstream
 import java.lang.Comparable;
 import java.util.Comparator;
-=======
 import java.util.Calendar;
->>>>>>> Stashed changes
 
 public class GraphShow{
     static public class DataPoint implements Comparable<DataPoint> {
