@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 public class Foodpedia {
     private HashMap<String, SimpleFood> foods;
 
-    static public Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
+    public static Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
         File text = new File(path + "/foodpedia.txt");
         File lock = new File(path + "/foodpedia.lock");
 

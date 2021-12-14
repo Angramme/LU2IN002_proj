@@ -131,21 +131,21 @@ public class GraphShow{
         int reco;
 
         if (genre.equals("homme")){
-            sb.append("Consommation moyenne recommandée de calories journalières pour un homme : " + ANSI_YELLOW + "2600 kcal\n" + ANSI_RESET);
+            sb.append("\nConsommation moyenne recommandée de calories journalières pour un homme : " + ANSI_YELLOW + "2600 kcal\n" + ANSI_RESET);
             reco = 2600;
         }
         else{
-            sb.append("Consommation moyenne recommandée de calories journalières pour une femme : " + ANSI_YELLOW + "2100 kcal\n" + ANSI_RESET);
+            sb.append("\nConsommation moyenne recommandée de calories journalières pour une femme : " + ANSI_YELLOW + "2100 kcal\n" + ANSI_RESET);
             reco = 2100;
         }
 
         // cas 0
 
         if(tabCal.get(0) < 2600){
-            sb.append("Total de calories consommés le premier jour : "+ANSI_GREEN + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous êtes dans la recommandation !\n");
+            sb.append("\nTotal de calories consommés le premier jour : "+ANSI_GREEN + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous êtes dans la recommandation !\n");
         }
         else{
-            sb.append("Total de calories consommés le premier jour : "+ANSI_RED + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous avez trop consommé aujourd'hui\n");
+            sb.append("\nTotal de calories consommés le premier jour : "+ANSI_RED + String.format("%.2f", tabCal.get(0))+" kcal"+ANSI_RESET+", vous avez trop consommé aujourd'hui\n");
         }
 
         // autres cas
