@@ -2,6 +2,7 @@ all: lib* Calories.class IveEaten.class EatStats.class
 
 clean:
 	rm */*.class
+	rm *.class
 
 lib/BaseFood.class: lib/BaseFood.java
 	javac lib/BaseFood.java
