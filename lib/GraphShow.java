@@ -165,7 +165,7 @@ public class GraphShow{
         if(moyennetot < reco) sb.append("Moyenne totale : "+ANSI_GREEN+String.format("%.2f", moyennetot) + "kcal / jour." + ANSI_RESET + " Votre consommation au niveau des calories est OK.");
         else sb.append("Moyenne totale : "+ANSI_RED+String.format("%.2f", moyennetot) + "kcal / jour." + ANSI_RESET + " La moyenne journalière est supérieure à la consommation journalière recommandée, réduisez votre consommation.");
 
-        sb.append("\nMerci d'avoir utilisé EatStats !");
+        sb.append("\n\nMerci d'avoir utilisé EatStats !");
 
         System.out.println(sb.toString());
     }

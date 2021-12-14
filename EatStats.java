@@ -42,20 +42,28 @@ public class EatStats {
 
         System.out.println(ANSI_PURPLE + "Bienvenue sur le programme EatStats ! Ce programme va afficher sous forme de graphique les calories que vous avez consommé récemment.");
         
-        System.out.print(ANSI_CYAN + "Etes-vous un homme ou une femme ? (tapez votre réponse) : "+ANSI_RESET);
+        System.out.print(ANSI_CYAN + "Etes-vous un homme ou une femme ? (H / F) : "+ANSI_RESET);
 
         Scanner genre = new Scanner(System.in);
-        String tap = genre.nextLine();
+        String tap;
 
+        while(true){
+            tap = genre.nextLine();
+            tap = tap.toUpperCase();
+            if(tap.equals("HOMME")) tap = "H";
+            if(tap.equals("FEMME")) tap = "F";
+            if(tap.equals("H") || tap.equals("F")){
+                break;
+            }else{
+                System.out.println("entrée incorrecte!");
+            }
+        }
         genre.close();
 
-        if(!(tap.equals("homme")) && !(tap.equals("femme"))){
-            throw new Exception("saisie incorrecte");
-        }
 
 
         if(points.size() != 0){
-            GraphShow.get().drawGraph(points, tap);
+            GraphShow.get().drawGraph(points, tap.equals("H") ? "homme" : "femme");
         }else{
             System.out.print(ANSI_RED + "Manque des données! \n"+ANSI_RESET);
         }
