@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 public class Foodpedia {
-    HashMap<String, SimpleFood> foods;
+    private HashMap<String, SimpleFood> foods;
 
     static public Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
         File text = new File(path + "/foodpedia.txt");

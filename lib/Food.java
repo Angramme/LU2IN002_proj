@@ -25,7 +25,7 @@ public class Food extends SimpleFood {
         components = comps;
         quantities = quants;
     }
-    static public SimpleFood parse(Scanner scan) throws FoodpediaParseException {
+    public static SimpleFood parse(Scanner scan) throws FoodpediaParseException {
         String name = null;
         try{
             scan.skip("\\s*!\\{\\s*\\n+\\s*");
@@ -69,7 +69,7 @@ public class Food extends SimpleFood {
         }
     }
 
-    static private double scanWUnit(Scanner scan){
+    private static double scanWUnit(Scanner scan){
         double quantity = scan.nextDouble();
         String unit = scan.next("((mg)|(kg)|(g))");
         switch(unit){
