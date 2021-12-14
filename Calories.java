@@ -16,7 +16,7 @@ public class Calories {
                     System.out.println("hmmm, seems like "+a+" doesn't exist in the database. SKIPPING...");
                 }else{
                     System.out.println("LE "+food.getName());
-                    System.out.println("--- calories : "+food.getCaloriesPortion() + " kcal / 100g");
+                    System.out.println("--- calories : "+food.getCaloriesPortion() + " kcal");
                 }
             }
 

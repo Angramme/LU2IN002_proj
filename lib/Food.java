@@ -11,6 +11,7 @@ public class Food extends SimpleFood {
     }
     private ArrayList<BaseFood> components;
     private ArrayList<Double> quantities;
+    private double caloriesRaw;
     // in kcal per 100g
     private int unresolved;
 
@@ -18,11 +19,13 @@ public class Food extends SimpleFood {
         super(name, 0, 0);
         this.components = new ArrayList<BaseFood>();
         this.quantities = new ArrayList<Double>();
+        caloriesRaw = 0;
     }
     public Food(String name, ArrayList<BaseFood> comps, ArrayList<Double> quants){
         super(name, 0, 0);
         components = comps;
         quantities = quants;
+        caloriesRaw = 0;
     }
     public static SimpleFood parse(Scanner scan) throws FoodpediaParseException {
         String name = null;
@@ -99,7 +102,9 @@ public class Food extends SimpleFood {
     }
 
     private void addCalories(double kcal, double Q, int total){
-        calories = (calories * total + (kcal * Q / 100)) / (total + 1);
+        caloriesRaw += kcal * Q;
+        calories = caloriesRaw / portion;
+        // calories = (calories * total + (kcal * Q / 100)) / (total + 1);
     }
     public void addComponent(Food food, double quantity){
         components.add(food);
