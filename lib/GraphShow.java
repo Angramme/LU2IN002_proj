@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.Calendar;
 
 public class GraphShow{
-    static public class DataPoint implements Comparable<DataPoint> {
+    public static class DataPoint implements Comparable<DataPoint> {
         private long key;
         private double value;
 
@@ -28,7 +28,7 @@ public class GraphShow{
             this.value = value;
         }
     }
-    static public class DataPointComparator implements Comparator<GraphShow.DataPoint> {
+    public static class DataPointComparator implements Comparator<GraphShow.DataPoint> {
         @Override
         public int compare(GraphShow.DataPoint o1, GraphShow.DataPoint o2) {
             return o1.compareTo(o2);
@@ -94,16 +94,14 @@ public class GraphShow{
             sb.append(ANSI_YELLOW + "║\n");
             total += points.get(a).value;
 
-            //debug
-            System.out.println(c.get(Calendar.DAY_OF_MONTH));
-            System.out.println(currentDay.get(Calendar.DAY_OF_MONTH));
-
-            if(c.get(Calendar.DAY_OF_MONTH) == currentDay.get(Calendar.DAY_OF_MONTH)){
+            if((c.get(Calendar.DAY_OF_MONTH) == currentDay.get(Calendar.DAY_OF_MONTH))){
                 consocurrent += points.get(a).value;
+                if (a == points.size()-1) tabCal.add(consocurrent);
             }
             else{
                 currentDay.setTime(date);
                 tabCal.add(consocurrent);
+                consocurrent = points.get(a).value;
             }
         }
 
