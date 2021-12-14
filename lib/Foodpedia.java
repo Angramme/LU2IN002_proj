@@ -52,10 +52,6 @@ public class Foodpedia {
     public SimpleFood FindExactMatch(String name){
         return foods.get(name);
     }
-    // finds more or less matching results
-    public SimpleFood[] FindAll(String name){
-        return new SimpleFood[]{FindExactMatch(name)};
-    } 
 
     public void resolveDependencies() throws Exception {
         boolean hasResolvedAll = false;
