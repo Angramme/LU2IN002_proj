@@ -5,11 +5,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.lang.StringBuilder;
 
-interface NameToFood{
-    SimpleFood run(String name);
-}
-
 public class Food extends SimpleFood {
+    public static interface NameToFood{
+        public SimpleFood run(String name);
+    }
     private ArrayList<BaseFood> components;
     private ArrayList<Double> quantities;
     // in kcal per 100g
