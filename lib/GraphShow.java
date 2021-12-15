@@ -10,6 +10,11 @@ public class GraphShow{
     public static class DataPoint implements Comparable<DataPoint> {
         private long key;
         private double value;
+        
+        public DataPoint(long key, double value){
+            this.key = key;
+            this.value = value;
+        }
 
         public long getKey(){
             return key;
@@ -23,10 +28,6 @@ public class GraphShow{
             else return key > o.key ? 1 : -1;
         }
 
-        public DataPoint(long key, double value){
-            this.key = key;
-            this.value = value;
-        }
     }
     public static class DataPointComparator implements Comparator<GraphShow.DataPoint> {
         @Override

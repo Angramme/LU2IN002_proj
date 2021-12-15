@@ -14,6 +14,7 @@
     - Double calories()
     - Double portion()
     - Double caloriesPortion()
+
 - Food extends SimpleFood
     - ArrayList< BaseFood > components
     - ArrayList< Double > quantities
@@ -47,9 +48,25 @@
     - void printToUser()
 
 - GraphShow
-    - 
+    - static DataPoint implements Comparable< DataPoint >
+        - long key
+        - double value
+        - int compareTo(DataPoint o)
+    - static DataPointComparator implements Comparator< GraphShow.DataPoint >
+        - int compare(GraphShow.DataPoint o1, GraphShow.DataPoint o2)
+    - static GraphShow get()
+    - void drawGraph(ArrayList< DataPoint > points, String genre)
 
-- EatHistory
-    - addDataPoint(Food[] eaten)
-    - addDataPoint(Food[] eaten, Date date)
-    - getAverageOver(PropertyAccessor prop, Date start, Date end)
+- Levenshtein
+    - static int calculate(String x, String y)
+    - static int costOfSubstitution(char a, char b)
+    (not in project)
+
+- UnresolvedFood extends BaseFood
+    - String toString()
+
+Main functions :
+
+- Calories
+- EatStats
+- IveEaten

@@ -9,7 +9,22 @@ import java.io.FileNotFoundException;
 
 public class Foodpedia {
     private HashMap<String, SimpleFood> foods;
-
+    
+    public Foodpedia(File file) throws FileNotFoundException, Exception {
+        Scanner scan = new Scanner(file);
+    
+        foods = new HashMap<String, SimpleFood>();
+    
+        while(scan.hasNextLine()){
+            SimpleFood food = Food.parse(scan);
+            addFood(food);
+            scan.skip("\\s*\\n*\\s*");
+        }
+    
+        scan.close();
+    
+        resolveDependencies();
+    }
     public static Foodpedia openAndSync(String path) throws FileNotFoundException, Exception {
         File text = new File(path + "/foodpedia.txt");
         File lock = new File(path + "/foodpedia.lock");
@@ -25,21 +40,6 @@ public class Foodpedia {
         }
     }
 
-    public Foodpedia(File file) throws FileNotFoundException, Exception {
-        Scanner scan = new Scanner(file);
-
-        foods = new HashMap<String, SimpleFood>();
-
-        while(scan.hasNextLine()){
-            SimpleFood food = Food.parse(scan);
-            addFood(food);
-            scan.skip("\\s*\\n*\\s*");
-        }
-
-        scan.close();
-
-        resolveDependencies();
-    }
 
     public SimpleFood repas(String[] args){
         return FindExactMatch(args[0]);    
