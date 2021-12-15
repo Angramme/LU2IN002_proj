@@ -64,7 +64,7 @@ public class EatHistoryChunk {
             scan.skip("\\s*");
             String food_signature = scan.next("([a-zA-Z])+");
             scan.skip("\\s*\\n");
-            SimpleFood nfood = new SimpleFood(food_signature, calories, 0);
+            SimpleFood nfood = new SimpleFood(food_signature, calories, 100);
 
             if(!addDataPoint(timestamp, nfood)){
                 scan.close();
